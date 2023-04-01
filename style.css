@@ -1,0 +1,100 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.calculator {
+	display: flex;
+	flex-direction: column;
+	height: 60%;
+	width: 20%;
+	justify-content: flex-start;
+	align-items: center;
+	background-color: #a7a7a5;
+	border: 2px solid black;
+	border-radius: 5px;
+}
+
+.result {
+	width: 100%;
+	height: 20%;
+	background-color: #eee;
+	border: 10px solid #a7a7a5;
+	box-sizing: border-box;
+	border-radius: 15px;
+}
+
+.buttons {
+	display: flex;
+	width: 100%;
+	height: 10%;
+}
+
+.buttons button {
+	flex: 1;
+	font-size: 25px;
+	margin: 0 10px;
+	border-radius: 5px;
+}
+
+.numbers {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	box-sizing: border-box;
+	flex: 1;
+	padding: 10px;
+	gap: 10px;
+}
+
+.numbers button {
+	box-sizing: border-box;
+	width: 20%;
+	height: 20%;
+	border: 2px solid black;
+	border-radius: 10px;
+	font-size: 20px;
+}
+
+.live {
+	font-size: 25px;
+	text-align: right;
+	margin: 10px;
+	opacity: 0.75;
+}
+
+.final-result {
+	font-size: 35px;
+	text-align: right;
+	margin: 10px;
+}
+
+.clear {
+	background-color: rgb(127, 255, 212);
+}
+
+.delete {
+	background-color: tomato;
+}
+
+.numbers button:hover {
+	background-color: rgba(160, 241, 241, 0.884);
+}
+
+.numbers button:active {
+	background-color: rgba(28, 133, 133, 0.692);
+}
+
+.buttons button:active {
+	background-color: #eee;
+}
