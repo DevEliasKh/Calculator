@@ -1,73 +1,89 @@
-const userInput = document.querySelectorAll('.btn');
-const liveResult = document.querySelector('.live');
-const addBtn = document.querySelector('#add');
-const subtractBtn = document.querySelector('#subtract');
-const multiplyBtn = document.querySelector('#multiply');
-const divideBtn = document.querySelector('#divide');
-const equalBtn = document.querySelector('#equal');
-const operatorBtn = document.querySelectorAll('.operator');
-
 let firstNumber = '';
 let secondNumber = '';
-let operator;
-let displayValue = '';
+let operator = null;
+let tempNumber = '';
 
-function add() {
-	return firstNumber + secondNumber;
-}
-function subtract() {
-	return firstNumber - secondNumber;
-}
-function multiply() {
-	return firstNumber * secondNumber;
-}
-function divide() {
-	if (secondNumber === 0) {
-		alert("You can't divide numbers to zero");
-	} else {
-		return firstNumber / secondNumber;
-	}
-}
+const clearBtn = document.querySelector('.clear');
+const deleteBtn = document.querySelector('.delete');
+const numbersBtn = document.querySelectorAll('.number');
+const operatorBtn = document.querySelectorAll('.operator');
+const equalBtn = document.querySelector('#equal');
+const pointBtn = document.querySelector('#point');
+const liveResult = document.querySelector('.live');
 
-function equal() {}
+clearBtn.addEventListener('click', clearScreen);
+deleteBtn.addEventListener('click', deleteLasNumber);
+equalBtn.addEventListener('click', () => {
+	liveResult.textContent = operate(firstNumber, operator, secondNumber);
+	firstNumber = liveResult.textContent;
+});
+// pointBtn.addEventListener('click', setPoint);
 
-function operate(operator) {
-	if (operator === 'add') {
-		add();
-	} else if (operator === 'subtract') {
-		subtract();
-	} else if (operator === 'multiply') {
-		multiply();
-	} else if (operator === 'divide') {
-		divide();
-	} else if (operator === 'equal') {
-		equal();
-	}
-}
-
-userInput.forEach((element) => {
+numbersBtn.forEach((element) => {
 	element.addEventListener('click', () => {
-		displayValue += element.innerText;
-		liveResult.innerText += element.innerText;
+		tempNumber += element.textContent;
+		liveResult.textContent += element.textContent;
+		if (firstNumber) {
+			secondNumber = tempNumber;
+			liveResult.textContent = `${firstNumber} ${operator} ${secondNumber}`;
+			tempNumber = '';
+		}
 	});
 });
 
 operatorBtn.forEach((element) => {
 	element.addEventListener('click', () => {
-		if (element.id === 'add') {
-			operate('add');
-		} else if (element.id === 'subtract') {
-			operate('subtract');
-		} else if (element.id === 'multiply') {
-			operate('multiply');
-		} else if (element.id === 'divide') {
-			operate('divide');
-		} else if (element.id === 'equal') {
-			operate('equal');
+		operator = element.textContent;
+		if (!firstNumber) {
+			firstNumber = tempNumber;
+			tempNumber = '';
 		}
-		firstNumber = liveResult.innerText;
-		secondNumber = firstNumber;
-		firstNumber = '';
-		liveResult.innerText += element.innerText;
+		liveResult.textContent = `${firstNumber} ${operator} `;
 	});
 });
+
+function clearScreen() {
+	liveResult.textContent = '';
+	firstNumber = '';
+	secondNumber = '';
+	operator = null;
+	tempNumber = '';
+}
+function deleteLasNumber() {
+	liveResult.textContent = liveResult.textContent.toString().slice(0, -1);
+}
+function setPoint() {}
+
+function add(a, b) {
+	return a + b;
+}
+
+function subtract(a, b) {
+	return a - b;
+}
+
+function multiply(a, b) {
+	return a * b;
+}
+
+function divide(a, b) {
+	return a / b;
+}
+
+function operate(a, operator, b) {
+	a = Number(a);
+	b = Number(b);
+	switch (operator) {
+		case '+':
+			return add(a, b);
+		case '−':
+			return substract(a, b);
+		case '×':
+			return multiply(a, b);
+		case '÷':
+			if (b === 0) return null;
+			else return divide(a, b);
+		default:
+			return null;
+	}
+}

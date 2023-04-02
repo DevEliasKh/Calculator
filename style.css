@@ -67,16 +67,10 @@
 }
 
 .live {
-	font-size: 25px;
+	font-size: 55px;
 	text-align: right;
 	margin: 10px;
 	opacity: 0.75;
-}
-
-.final-result {
-	font-size: 35px;
-	text-align: right;
-	margin: 10px;
 }
 
 .clear {
