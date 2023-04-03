@@ -16,6 +16,7 @@ deleteBtn.addEventListener('click', deleteLasNumber);
 equalBtn.addEventListener('click', () => {
 	liveResult.textContent = operate(firstNumber, operator, secondNumber);
 	firstNumber = liveResult.textContent;
+	secondNumber = '';
 });
 // pointBtn.addEventListener('click', setPoint);
 
@@ -24,7 +25,7 @@ numbersBtn.forEach((element) => {
 		tempNumber += element.textContent;
 		liveResult.textContent += element.textContent;
 		if (firstNumber) {
-			secondNumber = tempNumber;
+			secondNumber += tempNumber;
 			liveResult.textContent = `${firstNumber} ${operator} ${secondNumber}`;
 			tempNumber = '';
 		}
@@ -51,6 +52,11 @@ function clearScreen() {
 }
 function deleteLasNumber() {
 	liveResult.textContent = liveResult.textContent.toString().slice(0, -1);
+	if (secondNumber) {
+		secondNumber = liveResult.textContent;
+	} else {
+		firstNumber = liveResult.textContent;
+	}
 }
 function setPoint() {}
 
