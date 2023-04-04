@@ -17,8 +17,16 @@ equalBtn.addEventListener('click', () => {
 	liveResult.textContent = operate(firstNumber, operator, secondNumber);
 	firstNumber = liveResult.textContent;
 	secondNumber = '';
+	operator = null;
 });
-// pointBtn.addEventListener('click', setPoint);
+// pointBtn.addEventListener('click', () => {
+// 	if (operator) {
+// 		if (secondNumber === '') {
+// 			secondNumber += '0.';
+// 		}
+// 		secondNumber += '.';
+// 	}
+// });
 
 numbersBtn.forEach((element) => {
 	element.addEventListener('click', () => {
@@ -82,7 +90,7 @@ function operate(a, operator, b) {
 	switch (operator) {
 		case '+':
 			return add(a, b);
-		case '−':
+		case '-':
 			return substract(a, b);
 		case '×':
 			return multiply(a, b);
